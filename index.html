@@ -1,0 +1,1655 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Finance — бухгалтерський супровід бізнесу</title>
+<meta name="description" content="Радісні фінанси: бухгалтерський, кадровий і управлінський облік для ФОП і ТОВ. Відкриття, щомісячний супровід, звіти, ПДВ, фінансовий моніторинг.">
+<script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-anim');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #102662;
+    --ink-deep: #0A1A47;
+    --paper: #FFFFFF;
+    --signal: #FB6835;
+    --sand: #CAAE99;
+    --sand-tint: #F5EFEA;
+    --muted: #4B5679;
+    --rule: rgba(16, 38, 98, .16);
+    /* derived tones of the palette (folders, hover, form errors) */
+    --sand-dark: #B8987F;
+    --sand-light: #DDC9B9;
+    --signal-hover: color-mix(in srgb, var(--signal) 85%, #fff);
+    --danger: #B3261E;
+    --display: "Manrope", "Segoe UI", Arial, sans-serif;
+    --body: "Manrope", "Segoe UI", Arial, sans-serif;
+    /* type scale: desktop max, phone min */
+    --fs-h1: clamp(34px, 4.3vw, 64px);
+    --fs-h2: clamp(28px, 3.2vw, 44px);
+    --fs-h3: clamp(21px, 1.9vw, 24px);
+    --fs-h4: 20px;
+    --fs-lede: clamp(17px, 1.4vw, 19px);
+    --fs-small: 15px;
+    --fs-caption: 13px;
+    /* radii: photos and fields / cards, folders, forms / buttons and pills */
+    --r-sm: 8px;
+    --r-md: 16px;
+    --r-pill: 4px;            /* buttons and switches: square corners, softened by 4px */
+    --btn-h: 48px;
+    --wrap: 1200px;
+    --gutter: clamp(16px, 4vw, 48px);
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }  /* section headings land below the pinned menu */
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0; letter-spacing: -.01em; }
+  h2 { font-size: var(--fs-h2); max-width: 20ch; }
+  h3 { font-size: var(--fs-h3); line-height: 1.25; }
+  h4 { font-size: var(--fs-h4); line-height: 1.3; }
+  p { margin: 0; }
+  .lede { font-size: var(--fs-lede); color: var(--muted); max-width: 60ch; }
+  .block { padding: clamp(64px, 8vw, 96px) 0; }
+  .block-head { display: grid; gap: 16px; margin-bottom: clamp(32px, 4vw, 48px); }
+
+  /* Buttons: one height, one radius, one type size. Primary = orange call to action
+     (stays visible on navy and on light blocks), secondary = outline in the text colour */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: var(--btn-h); padding: 0 24px;
+    font: 600 16px/1 var(--body);
+    text-decoration: none; border-radius: var(--r-pill); border: 2px solid transparent; cursor: pointer;
+    transition: background-color .2s, transform .1s;
+  }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn-signal { background: var(--signal); color: var(--ink); }
+  .btn-signal:hover { background: var(--signal-hover); }
+  .btn-line { border-color: currentColor; color: inherit; background: transparent; }
+  .btn-line:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+
+  /* Header */
+  /* menu stays pinned to the top while scrolling */
+  .top { position: sticky; top: 0; z-index: 50; color: #fff; background: var(--ink); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 88px; max-width: none; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo svg { width: 40px; height: 40px; flex: none; }
+  .logo b { font: 600 15px/1.05 var(--display); letter-spacing: .04em; }
+  .nav { display: flex; gap: 28px; align-items: center; font-weight: 500; font-size: 15px; }
+  .nav a { text-decoration: none; }
+  .nav a:not(.btn):hover { text-decoration: underline; text-underline-offset: 6px; }
+  .nav .btn { padding: 0 20px; }
+  .nav-reach { display: flex; align-items: center; gap: 6px; padding-left: 24px; border-left: 1px solid rgba(255,255,255,.25); }
+  .nav-reach .nav-phone { font-weight: 600; white-space: nowrap; margin-right: 8px; }
+  .nav-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; }
+  .nav-icon svg { width: 22px; height: 22px; }
+  .nav-icon:hover { background: rgba(255,255,255,.12); }
+  .top-cta, .menu-toggle { display: none; }
+  .menu-toggle {
+    width: 44px; height: 44px; flex: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+    background: none; border: 1.5px solid rgba(255,255,255,.35); border-radius: var(--r-pill); color: #fff; cursor: pointer;
+  }
+  .menu-toggle span { width: 18px; height: 2px; background: currentColor; border-radius: 2px; transition: transform .25s, opacity .2s; }
+  .top.menu-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .top.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+  .top.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }  @media (max-width: 1240px) {
+    .nav { gap: 20px; }
+    .nav-reach .nav-phone { display: none; }
+    .nav-reach { padding-left: 14px; }
+  }
+
+  /* Hero */
+  .hero { position: relative; background: var(--ink); color: #fff; overflow: hidden; }
+  .hero-frame { position: relative; height: clamp(560px, calc(100vh - 88px), 980px); }
+
+  /* Accounting terms riding up the orange line, plus a crosshair that follows the cursor */
+  .hero-terms { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+  .hero-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .hero-frame::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 8%, rgba(16,38,98,.78) 32%, rgba(16,38,98,0) 56%);
+  }
+  .hero-line { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+  .hero-line path { fill: none; stroke: var(--signal); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round;
+    stroke-dasharray: var(--len, 3000); stroke-dashoffset: var(--len, 3000); }
+  .hero-line circle { fill: var(--signal); transform-box: fill-box; transform-origin: center; transform: scale(0); }
+  .hero-line .halo { fill: none; stroke: var(--signal); stroke-width: 3; opacity: 0; }
+  /* .play restarts every time the first screen comes back into view */
+  .hero.play .hero-line path { animation: draw 2.4s 2.4s cubic-bezier(.6,.05,.3,1) forwards; }
+  .hero.play .hero-line circle { animation: pop .5s 4.7s cubic-bezier(.3,1.6,.5,1) forwards; }
+  .hero.play .hero-line .halo { animation: halo 1.6s 5s ease-out forwards; }
+
+  /* Text that assembles from flying digits (hero headline, quote in the second block) */
+  .assemble .w { display: inline-block; white-space: nowrap; }
+  .assemble .ch { display: inline-block; position: relative; transition: transform .25s cubic-bezier(.3,1.5,.5,1), color .25s; }
+  @media (hover: hover) {
+    .hero h1 .ch:not(.flying):hover { transform: scale(1.3) translateY(-6%); color: var(--signal); }
+  }
+  .assemble .ch.flying { color: transparent; }
+  .assemble .digit, .assemble .roll {
+    position: absolute; inset: 0; text-align: center; color: var(--ink); pointer-events: none;
+    font-family: var(--body); font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  .assemble .digit { will-change: transform, opacity; }
+  .hero .assemble .digit, .contact .assemble .digit { color: #fff; }   /* white digits on the navy blocks */
+  .assemble .digit.hot, .assemble .roll { color: var(--signal); }
+  .assemble .ch.shine { animation: shine .9s ease-out both; }
+  .assemble .ch.flying { color: transparent !important; }
+  /* headings on light blocks: navy digits and an orange glint instead of a white one */
+  section:not(.hero):not(.contact) .assemble .ch.shine { animation-name: shine-light; }
+  @keyframes shine-light {
+    35% { color: var(--signal); text-shadow: 0 0 22px rgba(251,104,53,.45); }
+    100% { text-shadow: none; }
+  }
+  @keyframes shine {
+    35% { text-shadow: 0 0 2px #fff, 0 0 24px rgba(255,255,255,.9), 0 0 48px rgba(251,104,53,.55); }
+    100% { text-shadow: none; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .js-anim .assemble { visibility: hidden; }
+  .js-anim .assemble.ready { visibility: visible; }
+  .js-anim .hero-copy > :not(h1) { opacity: 0; }
+  .js-anim .hero.play .hero-copy > :not(h1) { animation: appear .9s 2.2s ease-out forwards; }
+  @keyframes appear { to { opacity: 1; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop { to { transform: scale(1); } }
+  @keyframes halo { 0% { opacity: .9; transform: scale(.6); } 100% { opacity: 0; transform: scale(2.2); } }
+  .hero-copy {
+    position: absolute; z-index: 3; left: var(--gutter); top: 50%; transform: translateY(-46%);
+    width: min(44%, 600px); display: grid; gap: 28px;
+  }
+  .hero h1 { font-size: var(--fs-h1); font-weight: 800; line-height: 1.06; letter-spacing: -.02em; }
+  .hero-copy p { font-size: var(--fs-lede); color: rgba(255,255,255,.88); max-width: 40ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Belief */
+  .belief { background: var(--paper); }
+  .belief .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 5vw, 80px); align-items: center; }
+  /* the quote runs across the whole block, author underneath; lede and slider share the row below */
+  .belief-quote { grid-column: 1 / -1; margin: 0; display: grid; gap: 24px; }
+  /* lede on top, photo fills the rest so the column matches the slider card */
+  .belief-side { align-self: stretch; display: flex; flex-direction: column; gap: 32px; }
+  .belief-side img { flex: 1 1 0; height: 0; min-height: 220px; width: 100%; object-fit: cover; object-position: 30% 40%; border-radius: var(--r-sm); }
+  @media (max-width: 900px) { .belief-side img { flex: none; height: auto; aspect-ratio: 4 / 3; min-height: 0; } }
+  .belief blockquote { margin: 0; font: 700 clamp(26px, 2.6vw, 36px)/1.2 var(--display); letter-spacing: -.015em; hyphens: manual; overflow-wrap: normal; }
+  .belief blockquote em { font-style: normal; color: var(--signal); }
+  .belief-quote figcaption { display: grid; gap: 4px; padding-left: 20px; border-left: 2px solid var(--signal); }
+  .belief-quote figcaption b { font: 700 var(--fs-h4)/1.3 var(--display); color: var(--ink); }
+  .belief-quote figcaption span { font-size: var(--fs-small); color: var(--muted); }
+  @media (min-width: 901px) { .belief blockquote .q-line { white-space: nowrap; } }
+  /* each sentence starts on its own line; lines are balanced so no word hangs alone */
+  .belief blockquote .q-line { display: block; text-wrap: balance; }
+  .belief blockquote .q-line + .q-line { margin-top: 8px; }
+
+  /* Illusion vs reality slider */
+  .compare { position: relative; margin: 0; border-radius: var(--r-md); overflow: hidden; touch-action: pan-y; box-shadow: 0 24px 60px -30px rgba(16,38,98,.45); }
+  .compare-layer { padding: clamp(22px, 3vw, 36px); }
+  .compare-illusion { background: var(--sand-tint); color: var(--muted); }
+  .compare-real { position: absolute; inset: 0; background: var(--ink); color: #fff; clip-path: inset(0 0 0 var(--pos)); }
+  .compare-top { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+  .compare-top b { font: 700 var(--fs-h4)/1.2 var(--display); }
+  .compare-top span { font-size: var(--fs-small); opacity: .75; }
+  .compare-illusion .compare-top b { color: var(--ink); }
+  .compare dl { margin: 0; }
+  /* fixed row height keeps both layers' rows lined up even when a value wraps */
+  .compare dl > div { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 16px; align-items: center; height: 76px; border-top: 1px solid currentColor; border-color: rgba(16,38,98,.14); }
+  .compare-real dl > div { border-color: rgba(255,255,255,.18); }
+  .compare dt { font-size: 15px; }
+  .compare dd { margin: 0; font-weight: 600; font-size: clamp(15px, 1.4vw, 18px); }
+  .compare-illusion dd { filter: blur(2.2px); font-style: italic; font-weight: 500; }   /* the fog of guesswork */
+  .compare-illusion dd::after { content: " ?"; filter: none; }
+  .compare-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 0; pointer-events: none; }
+  .compare-handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: var(--signal); }
+  .compare-handle span {
+    position: absolute; top: 50%; left: 0; width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%;
+    background: var(--signal); box-shadow: 0 6px 18px rgba(16,38,98,.35);
+  }
+  .compare-handle span::before, .compare-handle span::after {   /* ‹ › arrows */
+    content: ""; position: absolute; top: 50%; width: 8px; height: 8px; border: solid var(--ink); border-width: 0 0 2px 2px;
+  }
+  .compare-handle span::before { left: 12px; transform: translateY(-50%) rotate(45deg); }
+  .compare-handle span::after { right: 12px; transform: translateY(-50%) rotate(-135deg); }
+  .compare-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+  .compare:has(.compare-range:focus-visible) { outline: 3px solid var(--signal); outline-offset: 4px; }
+
+  .belief-points { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); }
+  .belief-points li { border-top: 2px solid var(--ink); padding-top: 16px; color: var(--muted); font-size: 16px; }
+  .belief-points b { display: block; color: var(--ink); font: 700 var(--fs-h4)/1.3 var(--display); margin-bottom: 8px; }
+  @media (max-width: 900px) {
+    .belief-points { grid-template-columns: 1fr; }
+    .compare dl > div { grid-template-columns: 1fr; gap: 4px; height: 96px; align-content: center; }
+  }
+
+  /* Services */
+  .services { background: var(--sand-tint); }
+  .switch { display: inline-flex; padding: 4px; border-radius: var(--r-pill); background: var(--paper); border: 1px solid var(--rule); margin-bottom: 40px; }
+  .switch button {
+    font: 600 16px/1 var(--body); color: var(--ink); background: none; border: 0; cursor: pointer;
+    min-height: var(--btn-h); padding: 0 24px; border-radius: var(--r-pill);
+  }
+  .switch button[aria-selected="true"] { background: var(--ink); color: #fff; }
+  .svc-panel[hidden] { display: none; }
+  .svc-intro { color: var(--muted); max-width: 60ch; margin-bottom: 24px; }
+  .svc { border-top: 1px solid var(--rule); }
+  .svc:last-child { border-bottom: 1px solid var(--rule); }
+  .svc summary {
+    list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+    padding: 26px 0;
+  }
+  .svc summary::-webkit-details-marker { display: none; }
+  .svc summary h3 { font-size: var(--fs-h4); }
+  .svc summary p { color: var(--muted); font-size: var(--fs-small); margin-top: 6px; }
+  .plus { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--ink); position: relative; flex: none; transition: background .2s, transform .3s; }
+  .plus::before, .plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); }
+  .plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform .3s; }
+  .svc[open] .plus { background: var(--signal); border-color: var(--signal); }
+  .svc[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+  .svc summary:hover h3 { text-decoration: underline; text-decoration-color: var(--signal); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .svc ul { margin: 0; padding: 0 0 32px; list-style: none; columns: 2 320px; column-gap: 48px; max-width: 980px; }
+  .svc li { break-inside: avoid; padding: 0 0 12px 24px; position: relative; color: var(--ink); }
+  .svc li::before { content: ""; position: absolute; left: 0; top: .72em; width: 10px; height: 2px; background: var(--signal); }
+
+  /* Services as kraft folders (built by script from the list above).
+     Closed: cover lies over the back with a paper edge peeking out.
+     Open: the folder takes the whole row and the cover swings left on its spine,
+     showing the inside of the cover on the left and the paper on the right. */
+  .folders { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px 24px; padding-top: 26px; }
+  .folder { --back: var(--sand-dark); --cover: var(--sand); --inside: var(--sand-light); display: grid; grid-template-columns: 0fr 1fr; perspective: 2200px; }
+  .folder.open { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+  .folder-back { grid-column: 2; position: relative; background: var(--back); border-radius: 0 var(--r-md) var(--r-md) var(--r-md); padding: 8px; min-height: 240px; }
+  .folder-tab {
+    position: absolute; left: 0; top: -26px; height: 27px; padding: 0 18px; display: flex; align-items: center;
+    background: var(--back); border-radius: var(--r-sm) var(--r-sm) 0 0; font-size: var(--fs-caption); font-weight: 600; color: var(--ink);
+  }
+  .folder-paper {
+    position: relative; background: var(--paper); border-radius: var(--r-sm); padding: 16px 24px; min-height: 60px;
+    box-shadow: 0 1px 0 rgba(16,38,98,.08); transition: transform .35s cubic-bezier(.3,1.4,.5,1);
+  }
+  .folder:not(.open) .folder-paper { height: 60px; overflow: hidden; }
+  .folder:not(.open) .paper-body { visibility: hidden; }
+  @media (hover: hover) { .folder:not(.open):hover .folder-paper { transform: translateY(-14px) rotate(-1.2deg); } }
+  .paper-body { opacity: 0; transform: translateY(10px); transition: opacity .4s .45s, transform .4s .45s; }
+  .folder.flipped .paper-body { opacity: 1; transform: none; }
+  .paper-body h4 { margin: 8px 0 24px; outline: none; }
+  .paper-body ul { margin: 0; padding: 0; list-style: none; }
+  .paper-body li { padding: 10px 0 10px 24px; position: relative; border-top: 1px dashed var(--rule); color: var(--ink); }
+  .paper-body li::before { content: ""; position: absolute; left: 0; top: 1.2em; width: 10px; height: 2px; background: var(--signal); }
+  .paper-actions { display: none; }
+
+  .folder-cover {
+    position: absolute; inset: 22px 0 0 0; transform-origin: left center; transform-style: preserve-3d;
+    transition: transform .8s cubic-bezier(.55,.05,.25,1); z-index: 2;
+  }
+  .folder.flipped .folder-cover { transform: rotateY(-180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: var(--r-sm) var(--r-md) var(--r-md) var(--r-md); padding: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .face-front { background: var(--cover); box-shadow: 0 -1px 0 rgba(255,255,255,.35) inset; }
+  .face-front h3 { font-size: var(--fs-h4); }
+  .face-front p { color: var(--ink); font-size: var(--fs-small); max-width: 30ch; }
+  .folder-toggle {
+    margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px;
+    font: 600 16px/1 var(--body); color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer;
+  }
+  .folder-toggle::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }  /* whole cover is clickable */
+  .folder-toggle .plus { width: 34px; height: 34px; }
+  @media (hover: hover) { .face-front:hover .plus { background: var(--signal); border-color: var(--signal); } }
+  .face-inside { background: var(--inside); transform: rotateY(180deg); border-radius: var(--r-md) var(--r-sm) var(--r-md) var(--r-md); padding: 32px; }
+  .face-inside h3 { max-width: 16ch; }
+  .face-inside p { color: var(--ink); max-width: 34ch; }
+  .face-inside .btn { align-self: flex-start; }
+  /* buttons sit in one row at the bottom of the open cover; the open folder is tall enough to hold them */
+  .face-actions { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .folder.open .folder-back { min-height: 360px; }
+
+  @media (max-width: 1080px) { .folders { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 700px) {
+    .folders { grid-template-columns: 1fr; gap: 56px; }
+    /* on phones the cover flops forward and away instead of swinging sideways */
+    .folder.open { grid-template-columns: 0fr 1fr; }
+    .folder-cover { transform-origin: center bottom; transition: transform .6s cubic-bezier(.55,.05,.25,1), opacity .3s .3s; }
+    .folder.flipped .folder-cover { transform: rotateX(-88deg); opacity: 0; pointer-events: none; }
+    .paper-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px; }
+    .folder-back { min-height: 200px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .folder-cover, .paper-body, .folder-paper { transition: none; }
+  }
+
+  /* Process */
+  .process .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: step; position: relative; }
+  .step { padding: 0 28px 0 0; position: relative; }
+  .step-mark { display: flex; align-items: center; margin-bottom: 24px; }
+  .step-mark b {
+    width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; flex: none;
+    font: 700 18px/1 var(--display); background: var(--paper); border: 1.5px solid var(--ink);
+    transition: background-color .35s, border-color .35s, transform .45s cubic-bezier(.3,1.6,.5,1);
+  }
+  /* connector: a faint track; an orange arrow grows along it when the step before it lights up */
+  .step-mark i { position: relative; height: 2px; margin: 0 12px; background: var(--rule); flex: 1; }
+  .step-mark i::before { content: ""; position: absolute; inset: 0; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform .6s .35s cubic-bezier(.6,0,.3,1); }
+  .step-mark i::after {
+    content: ""; position: absolute; right: -2px; top: 50%; width: 9px; height: 9px; margin-top: -5px;
+    border: solid var(--signal); border-width: 2px 2px 0 0; transform: rotate(45deg); opacity: 0; transition: opacity .2s .9s;
+  }
+  .step.on .step-mark b { background: var(--signal); border-color: var(--signal); transform: scale(1.18); }
+  .step.on .step-mark i::before { transform: scaleX(1); }
+  .step.on .step-mark i::after { opacity: 1; }
+  .step:last-child .step-mark i { display: none; }
+  .step h3 { font-size: var(--fs-h4); margin-bottom: 12px; }
+  .step p { color: var(--muted); font-size: 16px; max-width: 30ch; }
+  .nowrap { white-space: nowrap; }
+
+  /* Story */
+  .story .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+  /* photo melts into the white page: rounded corners plus soft fades on its left and bottom edges */
+  .story-photo { position: sticky; top: 120px; margin: 0; }
+  .story-photo img {
+    width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--r-md);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%), linear-gradient(to top, transparent 0, #000 18%);
+    -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to right, transparent 0, #000 22%), linear-gradient(to top, transparent 0, #000 18%);
+            mask-composite: intersect;
+  }
+  .story-photo figcaption { font-size: var(--fs-small); color: var(--muted); margin-top: 12px; text-align: right; }
+
+  /* career path from the bottom up, in the style of the process steps: circles without numbers light up one by one
+     from the first job to the company, each joined to the next by an orange line that grows upward to an arrow */
+  .path { list-style: none; margin: 48px 0 0; padding: 0; }
+  .path li { position: relative; padding: 0 0 40px 56px; }
+  .path li:last-child { padding-bottom: 0; }
+  .path .dot {
+    position: absolute; left: 0; top: -4px; width: 32px; height: 32px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--ink);
+    transition: background-color .35s, border-color .35s, transform .45s cubic-bezier(.3,1.6,.5,1);
+  }
+  .path li:not(:last-child)::after {           /* segment from this circle down to the next one */
+    content: ""; position: absolute; left: 15px; top: 36px; bottom: -4px; width: 2px;
+    background: linear-gradient(var(--signal), var(--signal)) bottom / 100% 0 no-repeat, var(--rule);
+    transition: background-size .6s cubic-bezier(.6,0,.3,1);
+  }
+  .path li:first-child::before {               /* arrowhead pointing up into the top circle */
+    content: ""; position: absolute; left: 11px; top: 38px; width: 10px; height: 10px; border: solid var(--signal); border-width: 2px 0 0 2px;
+    transform: rotate(45deg); opacity: 0; transition: opacity .3s .5s;
+  }
+  .path li.on .dot { background: var(--signal); border-color: var(--signal); transform: scale(1.15); }
+  .path li.grow::after { background-size: 100% 100%, auto; }
+  .path li:first-child.on::before { opacity: 1; }
+  .path h3 { font-size: var(--fs-h4); margin-bottom: 8px; }
+  @media (prefers-reduced-motion: reduce) { .path .dot, .path li::after, .path li::before { transition: none; } }
+  /* side by side with the photo, the circles and arrows run along the photo side; text hugs them from the left */
+  @media (min-width: 901px) {
+    .path li { padding: 0 56px 40px 0; text-align: right; }
+    .path li:last-child { padding-bottom: 0; }
+    .path .dot { left: auto; right: 0; }
+    .path li:not(:last-child)::after { left: auto; right: 15px; }
+    .path li:first-child::before { left: auto; right: 11px; }
+    .path p { margin-left: auto; }
+  }
+  .path p { color: var(--muted); font-size: 16px; max-width: 58ch; }
+
+  /* Clients */
+  .clients { background: var(--sand-tint); }
+  .clients .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+  .client-list { list-style: none; margin: 0; padding: 0; }
+  .client-list li { display: flex; justify-content: space-between; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--rule); font-size: 18px; }
+  .client-list li:first-child { border-top: 1px solid var(--rule); }
+  .client-list span { color: var(--muted); white-space: nowrap; font-size: 16px; }
+
+  /* Rhythm */
+  .rhythm .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
+  .rhythm-photos { position: relative; padding: 0 0 56px; }
+  .rhythm-photos img { display: block; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-sm); }
+  .rhythm-photos .main { width: 76%; object-position: center 30%; }
+  .rhythm-photos .print {
+    position: absolute; right: 0; bottom: 0; width: 46%; object-position: center 25%;
+    border: 8px solid var(--paper); border-radius: var(--r-md); box-shadow: 0 24px 48px -24px rgba(10,26,71,.45);
+    transform: rotate(3deg); transition: transform .4s cubic-bezier(.3,1.4,.5,1);
+  }
+  @media (hover: hover) { .rhythm-photos:hover .print { transform: rotate(0deg) translateY(-6px); } }
+  @media (prefers-reduced-motion: reduce) { .rhythm-photos .print { transition: none; } }
+  .rhythm-text { display: grid; gap: 24px; }
+  .rhythm-text p { color: var(--muted); max-width: 48ch; }
+  .clock { white-space: nowrap; font: 700 var(--fs-h1)/1 var(--display); letter-spacing: -.03em; color: var(--ink); }
+  .clock small { font-size: .32em; color: var(--muted); letter-spacing: 0; font-weight: 400; display: block; margin-top: 10px; font-family: var(--body); }
+
+  /* Team album: signed photo prints stacked in depth, receding to the upper right (like an album fanned open).
+     --i is a card's place in the stack (0 = front); changing it slides the card to its new place. */
+  .album {
+    display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "stage intro" "stage list";
+    column-gap: clamp(32px, 5vw, 80px); row-gap: 32px; align-items: center;
+  }
+  .album-stage { grid-area: stage; }
+  .album-intro { grid-area: intro; align-self: end; display: grid; gap: 16px; }
+  .album-intro h2 { max-width: 14ch; }
+  .album-list { grid-area: list; align-self: start; }
+  .album-stage { position: relative; height: 600px; perspective: 1800px; perspective-origin: 20% 50%; }
+  .album-card {
+    --i: 0; position: absolute; left: 4%; top: 120px; width: 300px; margin: 0;
+    background: var(--paper); padding: 12px 12px 0; border-radius: var(--r-sm);
+    box-shadow: 0 24px 48px -24px rgba(10,26,71,.45); transform-origin: left center; z-index: calc(10 - var(--i));
+    transform: translate3d(calc(var(--i) * 60px), calc(var(--i) * -34px), calc(var(--i) * -150px)) rotateY(calc(var(--i) * -6deg - 8deg));
+    opacity: calc(1 - var(--i) * .14);
+    transition: transform .9s cubic-bezier(.6,0,.2,1), opacity .9s;
+  }
+  .album-card.tuck { transition-duration: .7s; }
+  .album-photo { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 4px; background: var(--sand-tint); }
+  .album-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.2s; }
+  .album-photo img.alt { opacity: 0; }
+  .album-card.swap .album-photo img.alt { opacity: 1; }
+  .album-photo.no-photo { display: grid; place-items: center; background: var(--ink); color: var(--sand); font: 700 48px/1 var(--display); }
+  .album-card figcaption { display: grid; gap: 2px; padding: 12px 4px 16px; }
+  .album-card figcaption b { font: 700 var(--fs-h4)/1.25 var(--display); }
+  .album-card figcaption span { font-size: var(--fs-caption); color: var(--muted); }
+
+  .album-list { list-style: none; margin: 0 0 32px; padding: 0; border-top: 1px solid var(--rule); }
+  .album-list li { border-bottom: 1px solid var(--rule); }
+  .album-list button {
+    display: flex; align-items: baseline; gap: 16px; width: 100%; padding: 16px 0; background: none; border: 0; cursor: pointer;
+    font: 700 var(--fs-h4)/1.25 var(--display); color: var(--muted); text-align: left; transition: color .25s, padding-left .25s;
+  }
+  .album-list button span { font: 600 var(--fs-caption)/1 var(--body); color: var(--muted); min-width: 24px; }
+  .album-list button:hover { color: var(--ink); }
+  .album-list button[aria-pressed="true"] { color: var(--ink); padding-left: 8px; }
+  .album-list button[aria-pressed="true"] span { color: var(--signal); }
+  .album-list { margin: 0; }
+  .album-stage { transition: height .5s; }
+  /* a chosen person: the print moves to the middle of the stack area, grows, and the bio unfolds under the photo */
+  .album-bio { margin: 0; max-height: 0; opacity: 0; overflow: hidden; font-size: var(--fs-small); color: var(--muted); line-height: 1.5;
+    transition: max-height .5s, opacity .4s .25s, margin-top .5s; }
+  .album-card.focus { z-index: 20; opacity: 1; cursor: zoom-out;
+    transform: translate3d(var(--cx, 0px), -96px, 0) rotateY(0deg) scale(var(--zoom)); }
+  .album-card { --zoom: 1.12; }
+  .album-card.focus .album-bio { max-height: 160px; opacity: 1; margin-top: 8px; }
+  .album.focused .album-card:not(.focus) { opacity: .1; }
+  .album.focused .album-stage { height: 720px; }
+
+  @media (max-width: 900px) {
+    .album { grid-template-columns: 1fr; grid-template-areas: "intro" "stage" "list"; row-gap: 16px; }
+    .album-intro h2 { max-width: none; }
+    .album-stage { height: 430px; perspective: 1200px; }
+    .album-card { width: 220px; top: 56px; left: 2%;
+      transform: translate3d(calc(var(--i) * 34px), calc(var(--i) * -22px), calc(var(--i) * -110px)) rotateY(calc(var(--i) * -6deg - 6deg)); }
+    .album-card figcaption b { font-size: 17px; }
+    .album-list button { padding: 12px 0; font-size: 17px; }
+    .album-card { --zoom: 1.25; }
+    .album-card.focus { transform: translate3d(var(--cx, 0px), -60px, 0) rotateY(0deg) scale(var(--zoom)); }
+    .album.focused .album-stage { height: 640px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .album-card, .album-photo img, .album-list button { transition: none; }
+  }
+
+  /* Contact */
+  .contact { background: var(--ink); color: #fff; }
+  .contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+  .contact h2 { color: #fff; }
+  .contact .lede { color: rgba(255,255,255,.74); margin-top: 20px; }
+  .reach { margin-top: 48px; display: grid; gap: 12px; font-size: 18px; }
+  .reach a { text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); justify-self: start; }
+  .reach a:hover { border-color: var(--signal); }
+  form { display: grid; gap: 16px; background: var(--paper); color: var(--ink); padding: clamp(24px, 3vw, 48px); border-radius: var(--r-md); }
+  label { display: grid; gap: 8px; font-size: var(--fs-small); font-weight: 500; }
+  input, select, textarea {
+    font: 400 17px/1.4 var(--body); color: var(--ink); background: var(--paper);
+    border: 1.5px solid var(--rule); border-radius: var(--r-sm); padding: 12px 16px; width: 100%;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(251,104,53,.35); }
+  textarea { min-height: 110px; resize: vertical; }
+  .field-error { color: var(--danger); font-size: var(--fs-small); font-weight: 400; min-height: 0; }
+  .form-note { font-size: var(--fs-caption); color: var(--muted); }
+  .form-done { display: none; gap: 14px; }
+  form.sent > :not(.form-done) { display: none; }
+  form.sent .form-done { display: grid; }
+  
+  .form-done p { color: var(--muted); }
+
+  footer { background: var(--ink-deep); color: rgba(255,255,255,.7); font-size: var(--fs-small); padding: 32px 0; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+  footer .logo { color: #fff; }
+  footer .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer .foot-links a { color: #fff; text-decoration: none; }
+  footer .foot-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Responsive */
+  @media (max-width: 1080px) {
+    .process .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+    .step:nth-child(2) .step-mark i { display: none; }
+  }
+  @media (max-width: 900px) {
+    /* mobile menu: links drop down under the pinned bar */
+    .top .wrap { gap: 12px; }
+    .logo { margin-right: auto; }
+    .top-cta, .menu-toggle { display: inline-flex; }
+    .nav {
+      display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
+      padding: 8px var(--gutter) 24px; background: var(--ink); border-top: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 24px 48px -24px rgba(10,26,71,.6); font-size: 18px;
+    }
+    .top.menu-open .nav { display: flex; }
+    .nav > a:not(.btn) { display: flex; align-items: center; min-height: 56px; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .nav-reach { border-left: 0; padding: 16px 0 0; gap: 8px; }
+    .nav-reach .nav-phone { display: inline; margin-right: auto; }
+    .nav-cta { display: none; }
+    .hero { background: var(--ink); }
+    .hero-frame { height: auto; display: flex; flex-direction: column; }
+    .hero-frame::before { display: none; }
+    .hero-copy { position: relative; transform: none; width: auto; padding: 40px var(--gutter) 48px; }
+    .hero-photo { position: relative; aspect-ratio: 4 / 5; max-height: 640px; width: 100%; overflow: hidden; }
+    .belief .wrap, .story .wrap, .clients .wrap, .rhythm .wrap, .contact .wrap { grid-template-columns: 1fr; }
+    .story-photo { position: static; max-width: 420px; }
+    .story-photo img { aspect-ratio: 4 / 5; -webkit-mask-image: linear-gradient(to top, transparent 0, #000 20%); mask-image: linear-gradient(to top, transparent 0, #000 20%); }
+    .story-photo figcaption { text-align: left; }
+  }
+  @media (min-width: 901px) {
+    /* portrait sits right of centre and fades into the navy on both sides */
+    .hero-photo {
+      position: absolute; top: 0; right: 12%; height: 100%; width: clamp(420px, 46%, 900px);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 82%, transparent 100%);
+              mask-image: linear-gradient(90deg, transparent 0%, #000 28%, #000 82%, transparent 100%);
+    }
+  }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .logo b { font-size: 13px; }
+    .top-cta { padding: 0 16px; font-size: 15px; min-height: 44px; }
+    .process .steps { grid-template-columns: 1fr; }
+    .step-mark i { display: none; }
+    .switch { display: flex; }
+    .switch button { flex: 1; padding: 0 12px; }
+    .client-list li { flex-direction: column; gap: 2px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .step-mark b, .step-mark i::before, .step-mark i::after { transition: none; }
+    .hero-line path { animation: none; stroke-dashoffset: 0; }
+    .hero-line circle { animation: none; transform: scale(1); }
+    .hero-line .halo { display: none; }
+    .plus, .plus::after { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Happy Finance, на початок сторінки">
+      <svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 4H4v32h7M29 4h7v32h-7"/>
+        <path d="M14 11v18M26 11v18M14 20h12"/>
+      </svg>
+      <b>HAPPY<br>FINANCE</b>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Розділи">
+      <a href="#services">Послуги</a>
+      <a href="#about">Про нас</a>
+      <a href="#team">Команда</a>
+      <a href="#contact">Контакти</a>
+      <span class="nav-reach">
+        <a class="nav-phone" href="tel:+380663568040">+38 066 356 80 40</a>
+        <a class="nav-icon" href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3 11l6 2.2M21 4l-3 16-6.2-4.6M21 4 9 13.2v5.3l2.8-3.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        </a>
+        <a class="nav-icon" href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </span>
+      <a class="btn btn-signal nav-cta" href="#contact">Залишити заявку</a>
+    </nav>
+    <!-- phones and tablets: the call to action stays in the bar, the rest opens from the menu button -->
+    <a class="btn btn-signal top-cta" href="#contact">Залишити заявку</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Відкрити меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero play">
+    <div class="hero-frame">
+      <canvas class="hero-terms" aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <h1 class="assemble">Бухгалтерія, з&nbsp;якою спокійно</h1>
+        <p>Беремо на себе бухгалтерію ФОП і ТОВ — від реєстрації бізнесу до повного супроводу та звітності. Ви отримуєте порядок у документах, контроль податків і чітке розуміння фінансів.</p>
+        <div class="hero-actions">
+          <a class="btn btn-signal" href="#contact">Записатися на консультацію</a>
+          <a class="btn btn-line" href="#services">Переглянути послуги</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="img/maria-hero-portrait.jpg" alt="Марія Панченко в чорному жакеті, дивиться в камеру" width="1100" height="1650">
+      </div>
+      <!-- the line is drawn by script to fit the photo at any screen size -->
+      <svg class="hero-line" preserveAspectRatio="none" aria-hidden="true">
+        <path d=""/>
+        <circle class="halo" r="14"/>
+        <circle r="11"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="belief block" id="about">
+    <div class="wrap">
+      <figure class="belief-quote">
+        <blockquote>
+          <span class="q-line">Без&nbsp;цифр управління бізнесом неможливе.</span>
+          <span class="q-line">Тоді це не управління, а&nbsp;<em>ілюзія</em>.</span>
+        </blockquote>
+        <figcaption>
+          <b>Марія Панченко</b>
+          <span>засновниця «Радісних фінансів»</span>
+        </figcaption>
+      </figure>
+      <div class="belief-side">
+        <p class="lede">Зрозумійте, що насправді відбувається у вашому бізнесі: де ви заробляєте, куди зникають гроші, які процеси потребують уваги та на основі чого приймати правильні управлінські рішення.</p>
+        <img src="img/maria-look-closer.jpg" alt="Марія дивиться крізь коло, складене з пальців, ніби в лупу" width="1400" height="875" loading="lazy">
+      </div>
+
+      <!-- illusion vs reality: the reality layer is revealed from the handle to the right -->
+      <figure class="compare" style="--pos: 50%">
+        <div class="compare-layer compare-illusion" aria-hidden="true">
+          <div class="compare-top"><b>Без обліку</b><span>як здається власнику</span></div>
+          <dl>
+            <div><dt>Гроші на рахунку</dt><dd>Начебто вистачає</dd></div>
+            <div><dt>Прибуток за місяць</dt><dd>Мабуть, є</dd></div>
+            <div><dt>Склад</dt><dd>Здається, все на місці</dd></div>
+            <div><dt>Податки</dt><dd>Бухгалтер щось подав</dd></div>
+          </dl>
+        </div>
+        <div class="compare-layer compare-real">
+          <div class="compare-top"><b>З обліком</b><span>що ви знаєте точно</span></div>
+          <dl>
+            <div><dt>Гроші на рахунку</dt><dd>Точний залишок і скільки з нього — податки</dd></div>
+            <div><dt>Прибуток за місяць</dt><dd>Реальний прибуток і що його з'їдає</dd></div>
+            <div><dt>Склад</dt><dd>Залишки звірені, нестачу видно одразу</dd></div>
+            <div><dt>Податки</dt><dd>Сума і строк сплати відомі заздалегідь</dd></div>
+          </dl>
+        </div>
+        <div class="compare-handle" aria-hidden="true"><span></span></div>
+        <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Порівняння: без обліку ліворуч, з обліком праворуч">
+      </figure>
+
+      <ul class="belief-points">
+        <li><b>Цифри, а не відчуття</b>Щомісяця бачите прибуток, гроші й борги — і знаєте, яке рішення ухвалити далі.</li>
+        <li><b>Точки контролю</b>Підбираємо зручний документообіг і показуємо, хто в команді за що відповідає.</li>
+        <li><b>Рішення замість проблем</b>Якщо щось пішло не так, ви отримуєте від нас варіанти виходу з цифрами й нормами закону.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="services block" id="services">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 style="max-width:none">Ви займаєтесь бізнесом.<br>Податкова, банк і&nbsp;звіти&nbsp;—&nbsp;на&nbsp;нас</h2>
+        <p class="lede">Жодних штрафів за пропущені строки, заблокованих накладних і нічних пошуків документів. Оберіть форму бізнесу й подивіться, що ми забираємо на себе.</p>
+      </div>
+
+      <div class="switch" role="tablist" aria-label="Форма бізнесу">
+        <button role="tab" id="tab-fop" aria-controls="panel-fop" aria-selected="true">Для ФОП</button>
+        <button role="tab" id="tab-tov" aria-controls="panel-tov" aria-selected="false" tabindex="-1">Для ТОВ</button>
+      </div>
+
+      <div class="svc-panel" id="panel-fop" role="tabpanel" aria-labelledby="tab-fop">
+        <details class="svc">
+          <summary><div><h3>Відкриття ФОП</h3><p>Онлайн, без вашої присутності</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Підбір КВЕДів</li>
+            <li>Підбір оптимальної системи оподаткування</li>
+            <li>Онлайн-реєстрація ФОП без участі власника</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Щомісячний бухгалтерський супровід</h3><p>Податки, ліміти, документи і звіти під контролем</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Аудит особистого кабінету в податковій</li>
+            <li>Реквізити для сплати податків</li>
+            <li>Контроль своєчасної і правильної сплати податків</li>
+            <li>Щомісячна перевірка банківської виписки</li>
+            <li>Контроль ліміту доходу за обраною групою</li>
+            <li>Заповнення книги доходів ФОП</li>
+            <li>Онлайн-зміна КВЕДів за потреби</li>
+            <li>Реєстрація ПРРО і віддалена робота в ньому</li>
+            <li>Рахунки, акти, видаткові накладні</li>
+            <li>Шаблони договорів надання послуг і реалізації продукції</li>
+            <li>Звіти в податкову</li>
+            <li>Акти звірки з постачальниками і покупцями</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Фінансовий супровід</h3><p>Автоматизація обліку і структура бізнесу</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Автоматизація обліку в CRM-системах</li>
+            <li>Розроблення структури компанії та бізнес-процесів</li>
+            <li>Фінансові документи під ваш запит: первинні документи або фінансові звіти</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Кадровий облік</h3><p>Для ФОП із працівниками</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Прийняття на роботу, зокрема під гранти</li>
+            <li>Трудові договори</li>
+            <li>Нарахування зарплати</li>
+            <li>Табель обліку робочого часу</li>
+            <li>Лікарняні та декретні</li>
+            <li>Звільнення</li>
+            <li>Звіти</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Фінансовий моніторинг у банку</h3><p>Запити будь-якої складності</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Готуємо пояснення і документи на запити банку</li>
+            <li>Супроводжуємо до закриття питання</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Закриття ФОП</h3><p>Без хвостів у податковій</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Припинення підприємницької діяльності</li>
+            <li>Фінальні звіти і розрахунки з бюджетом</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="svc-panel" id="panel-tov" role="tabpanel" aria-labelledby="tab-tov" hidden>
+        <details class="svc">
+          <summary><div><h3>Відкриття ТОВ</h3><p>Онлайн, за модельним статутом</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Підбір КВЕДів</li>
+            <li>Підбір оптимальної системи оподаткування</li>
+            <li>Онлайн-реєстрація за модельним статутом</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Повний бухгалтерський супровід</h3><p>Єдиний податок або загальна система, з ПДВ чи без, експорт та імпорт</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Рахунки, видаткові накладні, акти надання послуг</li>
+            <li>Договори, ТТН, ПРРО, акти звірки</li>
+            <li>Клієнт-банк: оформлення платежів і проведення в програмі</li>
+            <li>Проведення первинних документів усіх господарських операцій</li>
+            <li>Контроль взаєморозрахунків</li>
+            <li>Звіти: щомісячні, щоквартальні, щорічні — у податкову, статистику, ПФУ</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>ПДВ</h3><p>Реєстрація і розблокування податкових накладних</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Реєстрація податкових накладних</li>
+            <li>Розблокування податкових накладних</li>
+            <li>Звіти з ПДВ</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Кадровий облік</h3><p>Від прийняття на роботу до звітів</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Прийняття на роботу, зокрема під гранти</li>
+            <li>Трудові договори</li>
+            <li>Нарахування зарплати</li>
+            <li>Табель обліку робочого часу</li>
+            <li>Лікарняні та декретні</li>
+            <li>Звільнення</li>
+            <li>Звіти</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Управлінський облік для власника</h3><p>P&amp;L, Cashflow, Balance і звіти для контролю підрозділів</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Звіт про прибутки і збитки (P&amp;L)</li>
+            <li>Рух грошових коштів (Cashflow)</li>
+            <li>Баланс</li>
+            <li>Бланки звітів для контролю і управління підрозділами</li>
+            <li>Аудит бізнес-процесів у команді</li>
+            <li>Пошук проблемних точок, виправлення й оптимізація процесів</li>
+          </ul>
+        </details>
+        <details class="svc">
+          <summary><div><h3>Ревізія фінансового відділу</h3><p>Перевірка обліку і навчання вашої команди</p></div><span class="plus" aria-hidden="true"></span></summary>
+          <ul>
+            <li>Ревізія роботи фінансового відділу і бухгалтерського обліку</li>
+            <li>Підвищення кваліфікації бухгалтерів і фінансистів</li>
+            <li>Побудова організаційної структури компанії</li>
+            <li>Документообіг і точки контролю для власника під реальну роботу компанії</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="process block">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Як ми будуємо облік</h2>
+        <p class="lede">Спочатку вивчаємо, як працює ваш бізнес, і визначаємо, що потрібно покращити. Потім налаштовуємо облік та автоматизуємо процеси.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-mark"><b>1</b><i></i></div>
+          <h3>Аналізуємо діяльність</h3>
+          <p>Дивимося, як зараз рухаються документи, гроші й відповідальність у команді.</p>
+        </div>
+        <div class="step">
+          <div class="step-mark"><b>2</b><i></i></div>
+          <h3>Знаходимо те, <span class="nowrap">що працює</span> неправильно</h3>
+          <p>Реальні операційні процеси показують, де губляться гроші й час.</p>
+        </div>
+        <div class="step">
+          <div class="step-mark"><b>3</b><i></i></div>
+          <h3>Налаштовуємо документообіг</h3>
+          <p>Розподіляємо точки контролю так, щоб власник бачив, хто за що відповідає.</p>
+        </div>
+        <div class="step">
+          <div class="step-mark"><b>4</b><i></i></div>
+          <h3>Автоматизуємо</h3>
+          <p>Команда працює ефективніше, комунікація з клієнтами покращується, продажі ростуть.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team block" id="team">
+    <div class="wrap">
+      <!-- one composition: the album of signed prints on the left; heading, intro and the names that drive it on the right.
+           The front print changes every few seconds; a name brings that print to the centre with a few words about the person. -->
+      <div class="album">
+        <div class="album-intro">
+          <h2>Давайте знайомитися ближче</h2>
+          <p class="lede">Ми не просто працюємо з цифрами — ми стаємо вашими партнерами, яким можна довірити важливе. Відкриті до спілкування, завжди на зв’язку та зацікавлені у вашому результаті.</p>
+        </div>
+        <div class="album-stage">
+          <figure class="album-card" data-member="0">
+            <div class="album-photo"><img src="img/team-maria.jpg" alt="Марія Панченко" width="900" height="1200" loading="lazy"></div>
+            <figcaption><b>Марія Панченко</b><span>засновниця, фінансова експертка</span>
+              <p class="album-bio">Кризова менеджерка. Керувала підприємством зі штатом близько 300 людей.</p></figcaption>
+          </figure>
+          <figure class="album-card" data-member="1">
+            <div class="album-photo">
+              <img src="img/team-evgeniia.jpg" alt="Євгенія Мазепа" width="900" height="1200" loading="lazy">
+              <img class="alt" src="img/team-evgeniia-2.jpg" alt="" width="900" height="1200" loading="lazy">
+            </div>
+            <figcaption><b>Євгенія Мазепа</b><span>головна бухгалтерка</span>
+              <p class="album-bio">Була фінансовою директоркою, вела ТОВ на загальній системі. 17 років колекціонує настільні ігри.</p></figcaption>
+          </figure>
+          <figure class="album-card" data-member="2">
+            <div class="album-photo">
+              <img src="img/team-karyna.jpg" alt="Карина Омельченко" width="900" height="1200" loading="lazy">
+              <img class="alt" src="img/team-karyna-2.jpg" alt="" width="900" height="1200" loading="lazy">
+            </div>
+            <figcaption><b>Карина Омельченко</b><span>первинні документи, ПРРО</span>
+              <p class="album-bio">Прийшла з роздрібу, знає касу зсередини. Любить книжки й прогулянки.</p></figcaption>
+          </figure>
+          <figure class="album-card" data-member="3">
+            <div class="album-photo no-photo" aria-hidden="true">ЮА</div>
+            <figcaption><b>Юлія Авер'янова</b><span>зарплата і кадри</span>
+              <p class="album-bio">Понад 20 років у бухгалтерії, була головною бухгалтеркою.</p></figcaption>
+          </figure>
+          <figure class="album-card" data-member="4">
+            <div class="album-photo no-photo" aria-hidden="true">НГ</div>
+            <figcaption><b>Надія Гончаренко</b><span>закупівлі, первинні документи</span>
+              <p class="album-bio">Керувала відділом обліку первинної документації: 13 людей у трьох філіях.</p></figcaption>
+          </figure>
+        </div>
+
+        <ol class="album-list" aria-label="Команда: оберіть людину, щоб дізнатися більше">
+          <li><button type="button" aria-pressed="false"><span>01</span>Марія Панченко</button></li>
+          <li><button type="button" aria-pressed="false"><span>02</span>Євгенія Мазепа</button></li>
+          <li><button type="button" aria-pressed="false"><span>03</span>Карина Омельченко</button></li>
+          <li><button type="button" aria-pressed="false"><span>04</span>Юлія Авер'янова</button></li>
+          <li><button type="button" aria-pressed="false"><span>05</span>Надія Гончаренко</button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="story block">
+    <div class="wrap">
+      <div>
+        <h2>Компанія, яка виросла з рекомендацій</h2>
+        <p class="lede" style="margin-top:20px">Марія ніколи не планувала власну компанію: їй здавалося, що ще рано і треба повчитися. За сім років клієнти, рекомендуючи її знайомим, зібрали її самі.</p>
+        <!-- career path read from the bottom up: the first job at the bottom, the company at the top -->
+        <ol class="path" reversed>
+          <li><span class="dot" aria-hidden="true"></span><h3>«Радісні фінанси»</h3><p>У декреті тато попросив вести його бухгалтерію. За ним прийшли наступні клієнти, і так з'явилася компанія.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Фінансова директорка дистрибуційної компанії</h3><p>Понад 200 людей, перепродаж бізнесу, переїзд складу й нова база даних. За три роки збудувала фінансовий відділ і систему контролю.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Кав'ярня в Кропивницькому</h3><p>Прийшла на тимчасову заміну бухгалтерки, а залишилася директоркою. Побудувала облік і кондитерський цех з оптовими продажами та експортом.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Фоззі Фарм</h3><p>Касова дисципліна по всій аптечній мережі. Помилки у звітах помічала вже після закриття зміни, коли виправити їх важко. Тож почала навчати фармацевтів і написала для них інструкції та шпаргалки.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Старша бухгалтерка управлінської компанії</h3><p>Каса, банківські платежі й авансові звіти по всіх 16 філіях. Згодом — головна бухгалтерка магазину, з якого все починалося.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Оператор у компанії «Спецторг»</h3><p>Четвертий курс університету в Києві і перша робота з 8 до 18: первинні документи, податкові накладні, акти звірки.</p></li>
+        </ol>
+      </div>
+      <figure class="story-photo">
+        <img src="img/maria-studio.jpg" alt="Марія Панченко в профіль, у чорній блузі й червоній спідниці, вказує пальцем угору" width="598" height="798" loading="lazy">
+        <figcaption>Марія Панченко, засновниця</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="clients block">
+    <div class="wrap">
+      <div class="block-head" style="margin:0">
+        <h2>Кого ведемо зараз</h2>
+        <p class="lede">Виробництво, агро, освіта, імпорт і послуги. Кожному бізнесу підбираємо свій документообіг.</p>
+        <a class="btn btn-signal" href="#contact" style="justify-self:start; margin-top:16px">Записатися на консультацію</a>
+      </div>
+      <ul class="client-list">
+        <li>ТОВ, виробництво: повний бухгалтерський і управлінський облік <span>50 працівників</span></li>
+        <li>ТОВ, автошкола <span>до 20 працівників</span></li>
+        <li>ТОВ, агровиробництво <span>до 10 працівників</span></li>
+        <li>ТОВ, імпорт товарів <span>до 10 працівників</span></li>
+        <li>ФОП на послугах, зокрема з ПДВ <span>20 клієнтів</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rhythm block">
+    <div class="wrap">
+      <!-- two casual snapshots: family time, and a carefree smile off work; the small one lies over the corner like a print -->
+      <div class="rhythm-photos">
+        <img class="main" src="img/maria-family.jpg" alt="Марія у вишиванці тримає на руках двох дітей" width="532" height="798" loading="lazy">
+        <img class="print" src="img/maria-sunglasses.jpg" alt="Марія в сонцезахисних окулярах усміхається на прогулянці" width="800" height="1000" loading="lazy">
+      </div>
+      <div class="rhythm-text">
+        <p class="clock">9:00–17:00<small>Будні — і все встигаємо вчасно</small></p>
+        <h2>Добре працює той, хто добре відпочиває</h2>
+        <p>Після 17:00 і у вихідні наша команда з родиною. Організувати роботу так, щоб усе робилося якісно й у робочий час, — відповідальність власниці.</p>
+        <p>Тому ваші звіти не залежать від чиїхось нічних подвигів: терміни закладені в процес.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact block" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Розкажіть про свій бізнес</h2>
+        <p class="lede">Залиште контакт. Ми зателефонуємо в робочий час, поставимо кілька запитань і запропонуємо варіанти супроводу.</p>
+        <div class="reach">
+          <span>Марія Панченко</span>
+          <a href="tel:+380663568040">+38 066 356 80 40</a>
+          <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Telegram: @MariiaPanchenko_ua</a>
+          <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener">Instagram: @Mariia_Panchenko_ua</a>
+          <span>Кропивницький, працюємо також онлайн</span>
+        </div>
+      </div>
+      <form id="lead" novalidate>
+        <label>Ім'я
+          <input name="name" autocomplete="name" required>
+        </label>
+        <label>Телефон
+          <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+380" required aria-describedby="phone-err">
+          <span class="field-error" id="phone-err"></span>
+        </label>
+        <label>Форма бізнесу
+          <select name="type">
+            <option>ФОП</option>
+            <option>ТОВ</option>
+            <option>Ще не зареєстровано</option>
+          </select>
+        </label>
+        <label>Що потрібно (необов'язково)
+          <textarea name="msg" placeholder="Наприклад: ФОП 3 групи, потрібен щомісячний супровід і ПРРО"></textarea>
+        </label>
+        <button class="btn btn-signal" type="submit">Записатися на консультацію</button>
+        <p class="form-note">Телефон потрібен лише для того, щоб ми вам передзвонили.</p>
+        <div class="form-done" role="status">
+          <h3>Ви записані на консультацію</h3>
+          <p>Зателефонуємо в будній день з 9:00 до 17:00.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 4H4v32h7M29 4h7v32h-7"/>
+        <path d="M14 11v18M26 11v18M14 20h12"/>
+      </svg>
+      <b>HAPPY<br>FINANCE</b>
+    </a>
+    <span>«Радісні фінанси» — бухгалтерський супровід бізнесу</span>
+    <span class="foot-links">
+      <a href="tel:+380663568040">+38 066 356 80 40</a>
+      <a href="https://t.me/MariiaPanchenko_ua" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://instagram.com/Mariia_Panchenko_ua" target="_blank" rel="noopener">Instagram</a>
+    </span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+  // Text that assembles from digits: each letter gets three digits that fly in,
+  // keep ticking like counters on the way, and settle into the letter.
+  // area: the block the digits come from. scatter: digits first hang scattered
+  // across the block, then gather; otherwise they fly in from its edges.
+  // pace: how fast the digits fly. 'hero' is the original first-screen speed, 'section' a bit quicker for headings further down.
+  const PACE = {
+    hero:    { spread: 500, step: 28, dur: 900, durVar: 500, ticks: 5, tick: 45, lead: 120 },
+    section: { spread: 320, step: 18, dur: 650, durVar: 320, ticks: 4, tick: 40, lead: 100 }
+  };
+  function assemble(el, area, { scatter = false, hold = 0, pace = 'hero' } = {}) {
+    const P = PACE[pace];
+    // keep the heading's own line breaks (<br>); words are split on ordinary spaces only, so &nbsp; still binds
+    const BR = ' ';
+    const flat = [...el.childNodes].map(n => n.nodeName === 'BR' ? BR : n.textContent).join('');
+    const text = flat.replace(new RegExp(BR, 'g'), ' ').replace(/[ \t\r\n]+/g, ' ').trim();
+    el.textContent = '';
+    const chars = [];
+    flat.split(BR).forEach((line, li, lines) => {
+      line.trim().split(/[ \t\r\n]+/).filter(Boolean).forEach((word, wi, words) => {
+        const w = document.createElement('span');
+        w.className = 'w';
+        w.setAttribute('aria-hidden', 'true');
+        for (const c of word) {
+          const s = document.createElement('span');
+          s.className = 'ch flying';
+          s.textContent = c;
+          w.appendChild(s);
+          chars.push(s);
+        }
+        el.appendChild(w);
+        if (wi < words.length - 1) el.appendChild(document.createTextNode(' '));
+      });
+      if (li < lines.length - 1) el.appendChild(document.createElement('br'));
+    });
+    const label = document.createElement('span');
+    label.className = 'sr-only';
+    label.textContent = text;
+    el.appendChild(label);
+
+    const digit = () => String(Math.floor(Math.random() * 10));
+    let started = false, timers = [], anims = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const every = (fn, ms) => { const id = setInterval(fn, ms); timers.push(id); return id; };
+
+    // back to the starting state, so the effect can play again
+    function reset() {
+      timers.forEach(clearInterval);                     // clears timeouts too: they share one id pool
+      anims.forEach(a => a.cancel());
+      timers = []; anims = [];
+      chars.forEach(ch => {
+        ch.querySelectorAll('.digit, .roll').forEach(e => e.remove());
+        ch.classList.remove('shine');
+        if (ch.textContent.trim()) ch.classList.add('flying');
+      });
+      started = false;
+    }
+
+    function start() {
+      if (started) return;
+      started = true;
+      const f = area.getBoundingClientRect();
+      el.classList.add('ready');
+      chars.forEach((ch, i) => {
+        const r = ch.getBoundingClientRect();
+        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const count = ch.textContent.trim() ? 3 : 0;
+        let land = 0;
+        for (let k = 0; k < count; k++) {
+          const d = document.createElement('span');
+          d.className = 'digit' + (Math.random() < .3 ? ' hot' : '');
+          d.textContent = digit();
+          ch.appendChild(d);
+          let x = f.left + Math.random() * f.width, y = f.top + Math.random() * f.height;
+          if (!scatter && Math.random() < .65) {       // mostly from the edges and corners
+            if (Math.random() < .5) x = f.left + (Math.random() < .5 ? 0 : f.width) + (Math.random() - .5) * 120;
+            else y = f.top + (Math.random() < .5 ? 0 : f.height) + (Math.random() - .5) * 120;
+          }
+          const rot = (Math.random() - .5) * (scatter ? 120 : 720), sc = scatter ? .6 + Math.random() * .9 : .5 + Math.random() * 1.6;
+          const delay = hold + Math.random() * P.spread + i * (scatter ? P.step / 2 : P.step), dur = P.dur + Math.random() * P.durVar;
+          land = Math.max(land, delay + dur);
+          anims.push(d.animate([
+            { transform: `translate(${x - cx}px, ${y - cy}px) rotate(${rot}deg) scale(${sc})`, opacity: scatter ? .55 : 0 },
+            { opacity: 1, offset: .2 },
+            { transform: 'translate(0, 0) rotate(0deg) scale(.85)', opacity: 1, offset: .88 },
+            { transform: 'translate(0, 0) rotate(0deg) scale(.4)', opacity: 0 }
+          ], { duration: dur, delay, easing: 'cubic-bezier(.55, 0, .15, 1)', fill: 'both' }));
+          const tick = every(() => { d.textContent = digit(); }, 90);
+          later(() => clearInterval(tick), delay + dur);
+        }
+        if (!count) { ch.classList.remove('flying'); return; }
+        // the slot flickers through a few digits, then settles on its letter
+        later(() => {
+          const roll = document.createElement('span');
+          roll.className = 'roll';
+          ch.appendChild(roll);
+          let n = 0;
+          const flick = every(() => {
+            roll.textContent = digit();
+            if (++n > P.ticks) {
+              clearInterval(flick);
+              ch.querySelectorAll('.digit, .roll').forEach(e => e.remove());
+              ch.classList.remove('flying');
+              ch.classList.add('shine');
+            }
+          }, P.tick);
+        }, land - P.lead);
+      });
+    }
+    start.reset = reset;
+    return start;
+  }
+
+  (function () {
+    if (!document.documentElement.classList.contains('js-anim')) return;
+    // hero headline: digits fly in from the edges of the first screen on load
+    const hero = assemble(document.querySelector('.hero h1'), document.querySelector('.hero-frame'));
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    Promise.race([fontsReady, new Promise(r => setTimeout(r, 1500))]).then(() => {
+      requestAnimationFrame(hero);
+      // replay the whole first screen (headline, text, orange line, words on it) each time it scrolls back
+      // into view; reset only once it is completely off screen so nothing jumps while it is visible
+      const heroEl = document.querySelector('.hero');
+      let playing = true;
+      new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) {
+          if (!playing) return;
+          playing = false;
+          hero.reset();
+          heroEl.classList.remove('play');
+        } else if (!playing) {
+          playing = true;
+          void heroEl.offsetWidth;                         // let the CSS animations start over
+          heroEl.classList.add('play');
+          hero();
+          heroEl.dispatchEvent(new Event('hero:replay'));
+        }
+      }).observe(heroEl);
+
+      // every big section heading assembles the same way: digits fly in from the edges of its block
+      // as it scrolls into view, and replay each time it comes back
+      document.querySelectorAll('main section:not(.hero) h2').forEach(h => {
+        h.classList.add('assemble');
+        const run = assemble(h, h.closest('section'), { pace: 'section' });
+        let shown = false;
+        new IntersectionObserver(([e]) => {
+          if (e.intersectionRatio >= .6 && !shown) { shown = true; run(); }
+          else if (!e.isIntersecting && shown) { shown = false; run.reset(); }
+        }, { threshold: [0, .6] }).observe(h);
+      });
+    });
+  })();
+
+  // Hero: accounting terms and figures travel up the orange line, from its start
+  // at the bottom to the dot at the top. A crosshair follows the cursor and magnifies them.
+  (function () {
+    const canvas = document.querySelector('.hero-terms');
+    const frame = canvas.parentElement;
+    const path = frame.querySelector('.hero-line path');
+    const ctx = canvas.getContext('2d');
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const terms = ['Дебет', 'Кредит', 'ПДВ', 'ЄСВ', 'ЄП', 'ФОП', 'ТОВ', 'ПРРО', 'P&L', 'Cashflow', 'Баланс',
+      'Виписка', 'Накладна', 'Акт', 'Звіт', 'Табель', 'КВЕД', '₴ 85 000', '+24%', '3 група', '−12%',
+      '₴ 1 250', '20%', '×4', '31.12', '1 500 000', '₴ 12 480', 'Каса', '5%', 'Book'];
+    const RING = 110, REACH = 170;
+    const START = still ? 0 : 4600;                        // wait until the line has been drawn
+    const copy = frame.querySelector('.hero-copy');
+    let W = 0, H = 0, pts = [], len = 0, items = [], box = null, mouse = null, ring = 0, running = false, last = 0, born = 0;
+
+    // draw the line to fit the current layout: a zigzag along the bottom that turns
+    // and climbs the right edge of the photo, ending in a dot near the top
+    function buildLine() {
+      const svg = path.ownerSVGElement;
+      const fr = frame.getBoundingClientRect(), pr = frame.querySelector('.hero-photo').getBoundingClientRect();
+      const p = { l: pr.left - fr.left, t: pr.top - fr.top, w: pr.width, h: pr.height };
+      const mobile = innerWidth <= 900;
+      const top = mobile ? p.t + p.h * .1 : H * .1;
+      const y0 = mobile ? p.t + p.h * .95 : H * .95;
+      const y1 = mobile ? p.t + p.h * .84 : H * .85;
+      // climb in the free strip right of the photo (on phones, near the photo's right edge)
+      const xr = mobile ? p.l + p.w * .95 : p.l + p.w + (W - p.l - p.w) * .5;
+      const amp = (mobile ? p.h : H) * .02, ampX = p.w * .035;
+      const pts = [];
+      for (let k = 0; k <= 8; k++) {
+        const t = k / 8;
+        pts.push([-10 + (xr + 10) * t, y0 + (y1 - y0) * t + (k % 8 ? (k % 2 ? -amp : amp) : 0)]);
+      }
+      for (let j = 1; j <= 6; j++) {
+        const t = j / 6;
+        pts.push([xr + (j === 6 ? -ampX : (j % 2 ? ampX : -ampX)), y1 + (top - y1) * t]);
+      }
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      path.setAttribute('d', 'M' + pts.map(q => q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join(' L'));
+      const end = pts[pts.length - 1];
+      svg.querySelectorAll('circle').forEach(c => { c.setAttribute('cx', end[0]); c.setAttribute('cy', end[1]); });
+      svg.style.setProperty('--len', Math.ceil(path.getTotalLength()) + 1);
+    }
+
+    // sample the line in canvas pixels, so words can ride it at any screen size
+    function sample() {
+      const total = path.getTotalLength();
+      const m = path.getScreenCTM();
+      const c = canvas.getBoundingClientRect();
+      pts = [];
+      len = 0;
+      for (let i = 0; i <= 300; i++) {
+        const p = path.getPointAtLength(total * i / 300);
+        const q = new DOMPoint(p.x, p.y).matrixTransform(m);
+        const pt = { x: q.x - c.left, y: q.y - c.top, d: 0 };
+        if (pts.length) { const o = pts[pts.length - 1]; len += Math.hypot(pt.x - o.x, pt.y - o.y); pt.d = len; }
+        pts.push(pt);
+      }
+    }
+    function at(d) {                                       // point and direction at distance d along the line
+      let i = 1;
+      while (i < pts.length - 1 && pts[i].d < d) i++;
+      const a = pts[i - 1], b = pts[i];
+      const t = b.d > a.d ? (d - a.d) / (b.d - a.d) : 0;
+      const dx = b.x - a.x, dy = b.y - a.y, n = Math.hypot(dx, dy) || 1;
+      return { x: a.x + dx * t, y: a.y + dy * t, nx: -dy / n, ny: dx / n };
+    }
+    function make(k, n) {
+      return {
+        text: terms[k % terms.length],
+        d: len * k / n,                                    // spread evenly along the line
+        v: 34 + Math.random() * 30,
+        off: (Math.random() - .5) * 64,                    // drift either side of the line
+        tilt: (Math.random() - .5) * 24,
+        size: 12 + Math.random() * 9,
+        a: .55 + Math.random() * .35,
+        hot: Math.random() < .25,
+        zoom: 0
+      };
+    }
+    function resize() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      W = frame.clientWidth; H = frame.clientHeight;
+      canvas.style.height = H + 'px';
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const fr = frame.getBoundingClientRect(), c = copy.getBoundingClientRect();
+      box = { l: c.left - fr.left, t: c.top - fr.top, r: c.right - fr.left, b: c.bottom - fr.top };
+      buildLine();
+      sample();
+      const n = Math.round(Math.min(30, Math.max(14, len / 70)));
+      items = Array.from({ length: n }, (_, k) => make(k, n));
+    }
+    function draw(now) {
+      ctx.clearRect(0, 0, W, H);
+      if (mouse && ring > .01) {
+        ctx.save();
+        ctx.strokeStyle = `rgba(255,255,255,${.35 * ring})`;
+        ctx.setLineDash([3, 6]);
+        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, RING, 0, Math.PI * 2); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.strokeStyle = `rgba(255,255,255,${.16 * ring})`;
+        ctx.beginPath();
+        ctx.moveTo(mouse.x - RING - 50, mouse.y); ctx.lineTo(mouse.x + RING + 50, mouse.y);
+        ctx.moveTo(mouse.x, mouse.y - RING - 50); ctx.lineTo(mouse.x, mouse.y + RING + 50);
+        ctx.stroke();
+        ctx.fillStyle = `rgba(251,104,53,${ring})`;
+        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+      const shown = Math.min(1, Math.max(0, (now - born - START) / 1200));
+      if (!shown || !len) return;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      for (const p of items) {
+        const q = at(p.d);
+        const x = q.x + q.nx * p.off, y = q.y + q.ny * p.off;
+        const ends = Math.min(1, p.d / 80, (len - p.d) / 120);   // fade in at the start, out at the fingertip
+        const behind = x > box.l - 40 && x < box.r + 20 && y > box.t && y < box.b;   // keep the text readable
+        const a = Math.min(1, (p.a + p.zoom * .4) * ends * shown * (behind && p.zoom < .3 ? .2 : 1));
+        if (a <= 0) continue;
+        const col = p.hot ? '251,104,53' : '255,255,255';
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(p.tilt * (1 - p.zoom) * Math.PI / 180);
+        ctx.scale(1 + p.zoom * 1.3, 1 + p.zoom * 1.3);
+        ctx.font = `${p.zoom > .3 ? 600 : 500} ${p.size}px Manrope, sans-serif`;
+        ctx.fillStyle = `rgba(${col},${a})`;
+        ctx.fillText(p.text, 0, 0);
+        ctx.restore();
+      }
+    }
+    function step(t) {
+      if (!running) return;
+      const dt = Math.min((t - last) / 1000, .05); last = t;
+      ring += ((mouse ? 1 : 0) - ring) * .12;
+      for (const p of items) {
+        p.d += p.v * dt;
+        if (p.d > len) { p.d -= len; p.off = (Math.random() - .5) * 64; }
+        let z = 0;
+        if (mouse) {
+          const q = at(p.d);
+          const dd = Math.hypot(q.x + q.nx * p.off - mouse.x, q.y + q.ny * p.off - mouse.y);
+          if (dd < REACH) z = 1 - dd / REACH;
+        }
+        p.zoom += (z - p.zoom) * .15;
+      }
+      draw(t);
+      requestAnimationFrame(step);
+    }
+    function play(on) {
+      if (on === running) return;
+      running = on;
+      if (on) { last = performance.now(); requestAnimationFrame(step); }
+    }
+    frame.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const r = canvas.getBoundingClientRect();
+      mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+      if (still) draw(performance.now());
+    });
+    frame.addEventListener('pointerleave', () => { mouse = null; if (still) draw(performance.now()); });
+    born = performance.now();
+    document.querySelector('.hero').addEventListener('hero:replay', () => { born = performance.now(); });
+    resize();
+    document.fonts && document.fonts.ready.then(() => { resize(); draw(performance.now()); });
+    addEventListener('resize', () => { resize(); draw(performance.now()); });
+    if (still) { draw(born); return; }
+    new IntersectionObserver(([e]) => play(e.isIntersecting)).observe(frame);
+    document.addEventListener('visibilitychange', () => play(!document.hidden));
+  })();
+
+  // Mobile menu: the button opens the links under the pinned bar; a link, Escape or a tap outside closes it
+  (function () {
+    const top = document.querySelector('.top');
+    const btn = top.querySelector('.menu-toggle');
+    const setOpen = on => {
+      top.classList.toggle('menu-open', on);
+      btn.setAttribute('aria-expanded', on);
+      btn.setAttribute('aria-label', on ? 'Закрити меню' : 'Відкрити меню');
+    };
+    btn.addEventListener('click', () => setOpen(!top.classList.contains('menu-open')));
+    top.querySelector('.nav').addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && top.classList.contains('menu-open')) { setOpen(false); btn.focus(); }
+    });
+    document.addEventListener('click', e => { if (!top.contains(e.target)) setOpen(false); });
+    matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
+  })();
+
+  // Services as folders: turn each <details> service into a kraft folder.
+  // Without the script the plain expandable list still works.
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const services = (n) => n % 10 === 1 && n % 100 !== 11 ? 'послуга'
+    : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'послуги' : 'послуг';
+  // run a layout change as a smooth morph where the browser supports it
+  const morph = (folders, change) => {
+    if (still || !document.startViewTransition) { change(); return Promise.resolve(); }
+    folders.forEach((f, i) => { f.style.viewTransitionName = 'folder-' + i; });
+    const vt = document.startViewTransition(change);
+    vt.ready.catch(() => {});                            // the browser may skip the morph (hidden tab); the change still applies
+    return vt.finished.catch(() => {}).finally(() => folders.forEach(f => { f.style.viewTransitionName = ''; }));
+  };
+  let fid = 0;
+  document.querySelectorAll('.svc-panel').forEach(panel => {
+    const grid = document.createElement('div');
+    grid.className = 'folders';
+    panel.querySelectorAll('details.svc').forEach(d => {
+      const title = d.querySelector('h3').textContent;
+      const sub = d.querySelector('summary p').textContent;
+      const list = d.querySelector('ul');
+      const n = list.children.length;
+      const id = 'folder-paper-' + (++fid);
+      const f = document.createElement('article');
+      f.className = 'folder';
+      f.innerHTML = `
+        <div class="folder-back">
+          <span class="folder-tab">${n} ${services(n)}</span>
+          <div class="folder-paper" id="${id}">
+            <div class="paper-body">
+              <h4 tabindex="-1"></h4>
+              <div class="paper-actions">
+                <a class="btn btn-signal" href="#contact">Обговорити послугу</a>
+                <button type="button" class="btn btn-line folder-close">Закрити папку</button>
+              </div>
+            </div>
+          </div>
+          <div class="folder-cover">
+            <div class="face face-front">
+              <h3></h3><p></p>
+              <button type="button" class="folder-toggle" aria-expanded="false" aria-controls="${id}">
+                <span class="plus" aria-hidden="true"></span>Відкрити папку
+              </button>
+            </div>
+            <div class="face face-inside" aria-hidden="true">
+              <h3></h3><p></p>
+              <div class="face-actions">
+                <a class="btn btn-signal" href="#contact" tabindex="-1">Обговорити послугу</a>
+                <button type="button" class="btn btn-line folder-close" tabindex="-1">Закрити папку</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      f.querySelectorAll('h3').forEach(h => { h.textContent = title; });
+      f.querySelectorAll('.face p').forEach(p => { p.textContent = sub; });
+      f.querySelector('h4').textContent = title;
+      f.querySelector('.paper-body').insertBefore(list, f.querySelector('.paper-actions'));
+      grid.appendChild(f);
+      d.remove();
+    });
+    panel.appendChild(grid);
+  });
+
+  const allFolders = () => [...document.querySelectorAll('.folder')];
+  function setInside(f, on) {                            // keyboard reaches the inside of the cover only when open
+    f.querySelector('.face-inside').setAttribute('aria-hidden', !on);
+    f.querySelectorAll('.face-inside a, .face-inside button').forEach(el => { el.tabIndex = on ? 0 : -1; });
+  }
+  function closeFolder(f, refocus) {
+    if (!f.classList.contains('open')) return Promise.resolve();
+    f.classList.remove('flipped');                       // cover swings back first
+    const toggle = f.querySelector('.folder-toggle');
+    toggle.setAttribute('aria-expanded', 'false');
+    setInside(f, false);
+    return new Promise(r => setTimeout(r, still ? 0 : 650)).then(() =>
+      morph(allFolders(), () => { f.classList.remove('open'); })).then(() => { if (refocus) toggle.focus(); });
+  }
+  function closeAllFolders() { allFolders().forEach(f => { f.classList.remove('open', 'flipped'); setInside(f, false);
+    f.querySelector('.folder-toggle').setAttribute('aria-expanded', 'false'); }); }
+  async function openFolder(f) {
+    const other = allFolders().find(o => o !== f && o.classList.contains('open'));
+    if (other) await closeFolder(other);
+    await morph(allFolders(), () => { f.classList.add('open'); });
+    f.querySelector('.folder-toggle').setAttribute('aria-expanded', 'true');
+    setInside(f, true);
+    requestAnimationFrame(() => f.classList.add('flipped'));   // then the cover swings open
+    const r = f.getBoundingClientRect();
+    if (r.top < 90 || r.top > innerHeight * .5) scrollTo({ top: scrollY + r.top - 120, behavior: still ? 'auto' : 'smooth' });
+    setTimeout(() => f.querySelector('h4').focus({ preventScroll: true }), still ? 0 : 700);
+  }
+  document.addEventListener('click', e => {
+    const toggle = e.target.closest('.folder-toggle');
+    if (toggle) { openFolder(toggle.closest('.folder')); return; }
+    const close = e.target.closest('.folder-close');
+    if (close) closeFolder(close.closest('.folder'), true);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    const f = allFolders().find(o => o.classList.contains('open'));
+    if (f) closeFolder(f, true);
+  });
+
+  // Service tabs: ФОП / ТОВ
+  const tabs = [...document.querySelectorAll('.switch [role="tab"]')];
+  function select(tab) {
+    closeAllFolders();
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      select(next); next.focus();
+    });
+  });
+
+  // Illusion vs reality: the range input drives the split; the first time the card
+  // comes into view the handle sweeps once to show that it can be dragged.
+  (function () {
+    const box = document.querySelector('.compare');
+    const range = box.querySelector('.compare-range');
+    const set = v => box.style.setProperty('--pos', v + '%');
+    range.addEventListener('input', () => set(range.value));
+    if (still) return;
+    new IntersectionObserver(([e], io) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const keys = [50, 22, 78, 50], t0 = performance.now(), dur = 2600;
+      (function sweep(t) {
+        if (range.dataset.touched) return;
+        const p = Math.min(1, (t - t0) / dur), seg = Math.min(2, Math.floor(p * 3)), k = p * 3 - seg;
+        const ease = .5 - Math.cos(Math.PI * Math.min(1, k)) / 2;
+        const v = keys[seg] + (keys[seg + 1] - keys[seg]) * ease;
+        set(v); range.value = v;
+        if (p < 1) requestAnimationFrame(sweep);
+      })(t0);
+    }, { threshold: .6 }).observe(box);
+    range.addEventListener('pointerdown', () => { range.dataset.touched = 1; }, { once: true });
+    range.addEventListener('keydown', () => { range.dataset.touched = 1; }, { once: true });
+  })();
+
+  // Process steps: when the block comes into view, steps light up one by one with an arrow to the next.
+  (function () {
+    const steps = [...document.querySelectorAll('.process .step')];
+
+    // the step sequence replays every time the steps come back into view and resets once they are fully off screen
+    if (still) { steps.forEach(s => s.classList.add('on')); }
+    let timers = [];
+    const stop = () => { timers.forEach(clearTimeout); timers = []; };
+    new IntersectionObserver(([e]) => {
+      if (still) return;
+      if (e.intersectionRatio >= .5) {
+        if (timers.length || steps[0].classList.contains('on')) return;
+        steps.forEach((s, i) => timers.push(setTimeout(() => s.classList.add('on'), 300 + i * 950)));
+        timers.push(setTimeout(() => { timers = []; }, 300 + steps.length * 950));
+      } else if (!e.isIntersecting) {
+        stop();
+        steps.forEach(s => s.classList.remove('on'));
+      }
+    }, { threshold: [0, .5] }).observe(document.querySelector('.process .steps'));
+  })();
+
+  // Team album: every 4.5 s the front print is tucked to the back and the next person comes forward;
+  // a person with a second photo cross-fades to it halfway. A name on the right brings that print to the
+  // middle, larger, with the bio under the photo; the same name, the print itself, Esc or a click outside puts it back.
+  (function () {
+    const album = document.querySelector('.album');
+    const stage = album.querySelector('.album-stage');
+    const cards = [...album.querySelectorAll('.album-card')];
+    const buttons = [...album.querySelectorAll('.album-list button')];
+    let order = cards.map((_, i) => i), timer = null, swapTimer = null, visible = false, hold = false, focused = null;
+
+    function centre() {                                    // horizontal shift that puts the print in the middle of the stage
+      if (focused === null) return;
+      const c = cards[focused], w = c.offsetWidth;
+      const zoom = parseFloat(getComputedStyle(c).getPropertyValue('--zoom')) || 1;   // the print grows from its left edge
+      c.style.setProperty('--cx', (stage.clientWidth / 2 - c.offsetLeft - w / 2 - (zoom - 1) * w / 2) + 'px');
+    }
+    function focusOn(i) {
+      if (focused === i) { unfocus(); return; }
+      if (focused !== null) cards[focused].classList.remove('focus');
+      show(i);
+      focused = i;
+      centre();
+      cards[i].classList.add('focus');
+      album.classList.add('focused');
+      buttons.forEach((b, k) => b.setAttribute('aria-pressed', k === i));
+      play();
+    }
+    function unfocus() {
+      if (focused === null) return;
+      cards[focused].classList.remove('focus');
+      album.classList.remove('focused');
+      focused = null;
+      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      play();
+    }
+
+    function layout() {
+      order.forEach((c, depth) => { cards[c].style.setProperty('--i', depth); });
+      const front = order[0];
+      cards.forEach(c => c.classList.remove('swap'));
+      clearTimeout(swapTimer);
+      if (cards[front].querySelector('img.alt') && !still) swapTimer = setTimeout(() => cards[front].classList.add('swap'), 2200);
+    }
+    function show(member) {
+      while (order[0] !== member) order.push(order.shift());
+      layout();
+    }
+    function next() {
+      const front = cards[order[0]];
+      front.classList.add('tuck');
+      setTimeout(() => front.classList.remove('tuck'), 800);
+      order.push(order.shift());
+      layout();
+    }
+    function play() {
+      clearInterval(timer);
+      if (!still && visible && !hold && focused === null) timer = setInterval(next, 4500);
+    }
+    buttons.forEach((b, i) => b.addEventListener('click', () => focusOn(i)));
+    cards.forEach(c => c.addEventListener('click', () => { if (c.classList.contains('focus')) unfocus(); }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && focused !== null && !document.querySelector('dialog[open]')) unfocus(); });
+    document.addEventListener('click', e => { if (focused !== null && !album.contains(e.target)) unfocus(); });
+    addEventListener('resize', centre);
+    album.addEventListener('pointerenter', () => { hold = true; play(); });
+    album.addEventListener('pointerleave', () => { hold = false; play(); });
+    album.addEventListener('focusin', () => { hold = true; play(); });
+    album.addEventListener('focusout', () => { hold = false; play(); });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; play(); }, { threshold: .3 }).observe(album);
+    layout();
+  })();
+
+  // Career path: circles light up from the bottom (first job) to the top (the company), each joined by an
+  // orange line growing upward; replays each time the list comes back into view, like the process steps.
+  (function () {
+    const list = document.querySelector('.story .path');
+    const items = [...list.children].reverse();          // bottom first
+    let timers = [];
+    const reset = () => { timers.forEach(clearTimeout); timers = []; items.forEach(li => li.classList.remove('on', 'grow')); };
+    if (still) { items.forEach(li => li.classList.add('on', 'grow')); return; }
+    new IntersectionObserver(([e]) => {
+      if (e.intersectionRatio >= .35) {
+        if (timers.length || items[0].classList.contains('on')) return;
+        items.forEach((li, k) => {
+          timers.push(setTimeout(() => li.classList.add('on'), 200 + k * 700));
+          if (items[k + 1]) timers.push(setTimeout(() => items[k + 1].classList.add('grow'), 450 + k * 700));
+        });
+        timers.push(setTimeout(() => { timers = []; }, 200 + items.length * 700));
+      } else if (!e.isIntersecting) reset();
+    }, { threshold: [0, .35] }).observe(list);
+  })();
+
+  // Lead form. TODO: send to a real endpoint (Telegram bot, CRM or email) before launch.
+  const form = document.getElementById('lead');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const phone = form.phone.value.replace(/[^\d]/g, '');
+    const err = document.getElementById('phone-err');
+    if (!form.name.value.trim()) { form.name.focus(); return; }
+    if (phone.length < 10) {
+      err.textContent = 'Вкажіть номер повністю, щоб ми змогли передзвонити.';
+      form.phone.focus();
+      return;
+    }
+    err.textContent = '';
+    form.classList.add('sent');
+  });
+</script>
+</body>
+</html>
