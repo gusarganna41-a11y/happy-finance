@@ -368,8 +368,8 @@
   }
   .story-photo figcaption { font-size: var(--fs-small); color: var(--muted); margin-top: 12px; text-align: right; }
 
-  /* career path from the bottom up, in the style of the process steps: circles without numbers light up one by one
-     from the first job to the company, each joined to the next by an orange line that grows upward to an arrow */
+  /* career path from the top down, in the style of the process steps: circles without numbers light up one by one
+     from the first job to the company, each joined to the next by an orange line that grows downward to an arrow */
   .path { list-style: none; margin: 48px 0 0; padding: 0; }
   .path li { position: relative; padding: 0 0 40px 56px; }
   .path li:last-child { padding-bottom: 0; }
@@ -379,16 +379,16 @@
   }
   .path li:not(:last-child)::after {           /* segment from this circle down to the next one */
     content: ""; position: absolute; left: 15px; top: 36px; bottom: -4px; width: 2px;
-    background: linear-gradient(var(--signal), var(--signal)) bottom / 100% 0 no-repeat, var(--rule);
-    transition: background-size .6s cubic-bezier(.6,0,.3,1);
+    background: linear-gradient(var(--signal), var(--signal)) top / 100% 0 no-repeat, var(--rule);
+    transition: background-size .35s cubic-bezier(.6,0,.3,1);
   }
-  .path li:first-child::before {               /* arrowhead pointing up into the top circle */
-    content: ""; position: absolute; left: 11px; top: 38px; width: 10px; height: 10px; border: solid var(--signal); border-width: 2px 0 0 2px;
-    transform: rotate(45deg); opacity: 0; transition: opacity .3s .5s;
+  .path li:last-child::before {                /* arrowhead pointing down into the bottom circle */
+    content: ""; position: absolute; left: 11px; top: -14px; width: 10px; height: 10px; border: solid var(--signal); border-width: 2px 0 0 2px;
+    transform: rotate(225deg); opacity: 0; transition: opacity .2s;
   }
   .path li.on .dot { background: var(--signal); border-color: var(--signal); transform: scale(1.15); }
   .path li.grow::after { background-size: 100% 100%, auto; }
-  .path li:first-child.on::before { opacity: 1; }
+  .path li:last-child.on::before { opacity: 1; }
   .path h3 { font-size: var(--fs-h4); margin-bottom: 8px; }
   @media (prefers-reduced-motion: reduce) { .path .dot, .path li::after, .path li::before { transition: none; } }
   /* side by side with the photo, the circles and arrows run along the photo side; text hugs them from the left */
@@ -397,7 +397,7 @@
     .path li:last-child { padding-bottom: 0; }
     .path .dot { left: auto; right: 0; }
     .path li:not(:last-child)::after { left: auto; right: 15px; }
-    .path li:first-child::before { left: auto; right: 11px; }
+    .path li:last-child::before { left: auto; right: 11px; }
     .path p { margin-left: auto; }
   }
   .path p { color: var(--muted); font-size: 16px; max-width: 58ch; }
@@ -921,14 +921,14 @@
       <div>
         <h2>Компанія, яка виросла з рекомендацій</h2>
         <p class="lede" style="margin-top:20px">Марія ніколи не планувала власну компанію: їй здавалося, що ще рано і треба повчитися. За сім років клієнти, рекомендуючи її знайомим, зібрали її самі.</p>
-        <!-- career path read from the bottom up: the first job at the bottom, the company at the top -->
-        <ol class="path" reversed>
-          <li><span class="dot" aria-hidden="true"></span><h3>«Радісні фінанси»</h3><p>У декреті тато попросив вести його бухгалтерію. За ним прийшли наступні клієнти, і так з'явилася компанія.</p></li>
-          <li><span class="dot" aria-hidden="true"></span><h3>Фінансова директорка дистрибуційної компанії</h3><p>Понад 200 людей, перепродаж бізнесу, переїзд складу й нова база даних. За три роки збудувала фінансовий відділ і систему контролю.</p></li>
-          <li><span class="dot" aria-hidden="true"></span><h3>Кав'ярня в Кропивницькому</h3><p>Прийшла на тимчасову заміну бухгалтерки, а залишилася директоркою. Побудувала облік і кондитерський цех з оптовими продажами та експортом.</p></li>
-          <li><span class="dot" aria-hidden="true"></span><h3>Фоззі Фарм</h3><p>Касова дисципліна по всій аптечній мережі. Помилки у звітах помічала вже після закриття зміни, коли виправити їх важко. Тож почала навчати фармацевтів і написала для них інструкції та шпаргалки.</p></li>
-          <li><span class="dot" aria-hidden="true"></span><h3>Старша бухгалтерка управлінської компанії</h3><p>Каса, банківські платежі й авансові звіти по всіх 16 філіях. Згодом — головна бухгалтерка магазину, з якого все починалося.</p></li>
+        <!-- career path read from the top down: the first job at the top, the company at the bottom -->
+        <ol class="path">
           <li><span class="dot" aria-hidden="true"></span><h3>Оператор у компанії «Спецторг»</h3><p>Четвертий курс університету в Києві і перша робота з 8 до 18: первинні документи, податкові накладні, акти звірки.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Старша бухгалтерка управлінської компанії</h3><p>Каса, банківські платежі й авансові звіти по всіх 16 філіях. Згодом — головна бухгалтерка магазину, з якого все починалося.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Фоззі Фарм</h3><p>Касова дисципліна по всій аптечній мережі. Помилки у звітах помічала вже після закриття зміни, коли виправити їх важко. Тож почала навчати фармацевтів і написала для них інструкції та шпаргалки.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Кав'ярня в Кропивницькому</h3><p>Прийшла на тимчасову заміну бухгалтерки, а залишилася директоркою. Побудувала облік і кондитерський цех з оптовими продажами та експортом.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>Фінансова директорка дистрибуційної компанії</h3><p>Понад 200 людей, перепродаж бізнесу, переїзд складу й нова база даних. За три роки збудувала фінансовий відділ і систему контролю.</p></li>
+          <li><span class="dot" aria-hidden="true"></span><h3>«Радісні фінанси»</h3><p>У декреті тато попросив вести його бухгалтерію. За ним прийшли наступні клієнти, і так з'явилася компанія.</p></li>
         </ol>
       </div>
       <figure class="story-photo">
@@ -1615,11 +1615,12 @@
     layout();
   })();
 
-  // Career path: circles light up from the bottom (first job) to the top (the company), each joined by an
-  // orange line growing upward; replays each time the list comes back into view, like the process steps.
+  // Career path: circles light up from the top (first job) to the bottom (the company), each joined by an
+  // orange line growing downward; replays each time the list comes back into view, like the process steps.
   (function () {
     const list = document.querySelector('.story .path');
-    const items = [...list.children].reverse();          // bottom first
+    const items = [...list.children];                    // top first
+    const STEP = 400;
     let timers = [];
     const reset = () => { timers.forEach(clearTimeout); timers = []; items.forEach(li => li.classList.remove('on', 'grow')); };
     if (still) { items.forEach(li => li.classList.add('on', 'grow')); return; }
@@ -1627,10 +1628,10 @@
       if (e.intersectionRatio >= .35) {
         if (timers.length || items[0].classList.contains('on')) return;
         items.forEach((li, k) => {
-          timers.push(setTimeout(() => li.classList.add('on'), 200 + k * 700));
-          if (items[k + 1]) timers.push(setTimeout(() => items[k + 1].classList.add('grow'), 450 + k * 700));
+          timers.push(setTimeout(() => li.classList.add('on'), 150 + k * STEP));
+          if (items[k + 1]) timers.push(setTimeout(() => li.classList.add('grow'), 300 + k * STEP));
         });
-        timers.push(setTimeout(() => { timers = []; }, 200 + items.length * 700));
+        timers.push(setTimeout(() => { timers = []; }, 150 + items.length * STEP));
       } else if (!e.isIntersecting) reset();
     }, { threshold: [0, .35] }).observe(list);
   })();
